@@ -1,0 +1,3 @@
+
+<navigator url="/index/other/other">去下一页</navigator>
+<test-component bind:init="bindInit"></test-component>
