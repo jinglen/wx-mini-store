@@ -5,7 +5,7 @@ class CustomPage {
     if (options.store) {
       // HACK 微信不会直接使用 options，会克隆一次，导致多个页面的 store 对象不同
       const store = options.store
-      delete options.store
+      options.store = null
       this.initStore(store)
 
       const { onLoad, onUnload } = options
@@ -67,11 +67,11 @@ class CustomPage {
         const lastKey = keyArr.pop()
 
         // 取得最后一个对象或数组，为赋值准备
-        const beforeLast = keyArr.reduce((prev, c) => {
+        const lastObj = keyArr.reduce((prev, c) => {
           return prev[c]
         }, this.data)
 
-        beforeLast[lastKey] = rawData[rawKey]
+        lastObj[lastKey] = rawData[rawKey]
       })
 
       if (this.onChange) { this.onChange(rawData) }
